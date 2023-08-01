@@ -11,14 +11,11 @@ shared with any other student or 3rd party content provider. This submitted
 piece of work is entirely of my own creation.
 /////////////////////////////////////////////////////////////////////////*/
 
-#define _CRT_SECURE_NO_WARNINGS
-
 #include <stdio.h>
-#include <string.h>
 
 #include "core.h"
 
-// As demonstrated in the course notes:
+// As demonstrated in the course notes: 
 // https://intro2c.sdds.ca/D-Modularity/input-functions#clearing-the-buffer
 // Clear the standard input buffer
 void clearInputBuffer(void)
@@ -33,7 +30,7 @@ void clearInputBuffer(void)
 // Wait for user to input the "enter" key to continue
 void suspend(void)
 {
-    printf("\n<ENTER> to continue...");
+    printf("<ENTER> to continue...");
     clearInputBuffer();
     putchar('\n');
 }
@@ -71,10 +68,10 @@ int inputIntPositive()
         {
             printf("ERROR! Value must be > 0: ");
         }
-
+        
     } while (newline != '\n' || value <= 0);
 
-    return value;
+    return value; 
 }
 
 int inputIntRange(int intLower, int intUpper)
@@ -93,10 +90,10 @@ int inputIntRange(int intLower, int intUpper)
         {
             printf("ERROR! Value must be between %d and %d inclusive: ", intLower, intUpper);
         }
-
+        
     } while (newline != '\n' || value < intLower || value > intUpper);
 
-    return value;
+    return value; 
 }
 
 char inputCharOption(const char validChars[])
@@ -106,7 +103,7 @@ char inputCharOption(const char validChars[])
     while (flag)
     {
         scanf("%c%*c", &valueChar);
-        i = 0;
+        i=0;
         while (validChars[i] != '\0')
         {
             if (valueChar == validChars[i])
@@ -118,26 +115,31 @@ char inputCharOption(const char validChars[])
         if (flag)
         {
             printf("ERROR: Character must be one of [");
-            i = 0;
+            i=0;
             while (validChars[i] != '\0')
             {
-                printf("%c", validChars[i]);
+                printf("%c",validChars[i]);
                 i++;
             }
             printf("]: ");
         }
     }
     return valueChar;
+    
 }
 
 void inputCString(char *stringPointer, int charMin, int charMax)
 {
-    int flag = 1, size;
+    int i = 0, flag = 1, size;
     do
     {
         char validation[20] = {'\0'};
-        scanf("%[^\n]%*c", validation);
-        size = strlen(validation);
+        size = 0;
+        scanf(" %[^\n]", validation);
+        while (validation[size] != '\0')
+        {
+            size++;
+        } 
 
         if ((charMin == charMax) && (size != charMax))
         {
@@ -151,14 +153,18 @@ void inputCString(char *stringPointer, int charMin, int charMax)
         {
             printf("ERROR: String length must be between %d and %d chars: ", charMin, charMax);
         }
-
+        
         else
         {
             flag = 0;
-            strcpy(stringPointer, validation);
+            for (i = 0; i < size; i++)
+            {
+                stringPointer[i] = validation[i];
+            }
         }
 
     } while (flag);
+
 }
 
 void displayFormattedPhone(const char phoneNumber[])
@@ -172,13 +178,12 @@ void displayFormattedPhone(const char phoneNumber[])
     {
         while (phoneNumber[i] != '\0')
         {
-            if ((int)phoneNumber[i] < 48 || (int)phoneNumber[i] > 57)
+            if((int)phoneNumber[i]<49 || (int)phoneNumber[i]>57)
             {
                 nonDigit = 1;
             }
             i++;
         }
-
         if (i != 10 || nonDigit)
         {
             printf("(___)___-____");
@@ -186,9 +191,10 @@ void displayFormattedPhone(const char phoneNumber[])
         else
         {
             printf("(%c%c%c)%c%c%c-%c%c%c%c",
-                   phoneNumber[0], phoneNumber[1], phoneNumber[2],
-                   phoneNumber[3], phoneNumber[4], phoneNumber[5],
-                   phoneNumber[6], phoneNumber[7], phoneNumber[8], phoneNumber[9]);
+            phoneNumber[0],phoneNumber[1],phoneNumber[2],
+            phoneNumber[3],phoneNumber[4],phoneNumber[5],
+            phoneNumber[6],phoneNumber[7],phoneNumber[8],phoneNumber[9]);
         }
+        
     }
 }
