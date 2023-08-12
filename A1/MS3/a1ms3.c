@@ -23,7 +23,7 @@ int main(void)
     struct Appointment appoints[MAX_APPOINTMENTS] = { {0} };
     struct ClinicData data = { pets, MAX_PETS, appoints, MAX_APPOINTMENTS };
 
-    int patientCount = importPatients("patientData.txt", pets, MAX_PETS);
+    int patientCount = importPatients("D:/GitHub/Seneca-IPC-Project/A1/MS3/patientData.txt", pets, MAX_PETS);
     int appointmentCount = importAppointments("appointmentData.txt", appoints, MAX_APPOINTMENTS);
 
     printf("Imported %d patient records...\n", patientCount);

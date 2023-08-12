@@ -1,5 +1,5 @@
 /*/////////////////////////////////////////////////////////////////////////
-                        Assignment 1 - Milestone 1
+                        Assignment 1 - Milestone 3
 Full Name  : David Andres Sanchez Umbarila
 Student ID#: 140273228
 Email      : dasanchez-umbarila@myseneca.ca
@@ -101,19 +101,23 @@ int inputIntRange(int intLower, int intUpper)
 
 char inputCharOption(const char validChars[])
 {
-    char valueChar;
+    char valueChar[10] = {'\0'};
     int flag = 1, i;
     while (flag)
     {
-        scanf("%c%*c", &valueChar);
+	memset(valueChar, '\0', 10);
+	fgets(valueChar, 10, stdin);
         i = 0;
-        while (validChars[i] != '\0')
+        if (valueChar[1] == '\n')
         {
-            if (valueChar == validChars[i])
+            while (validChars[i] != '\0')
             {
-                flag = 0;
+                if (valueChar[0] == validChars[i])
+                {
+                    flag = 0;
+                }
+                i++;
             }
-            i++;
         }
         if (flag)
         {
@@ -124,10 +128,10 @@ char inputCharOption(const char validChars[])
                 printf("%c", validChars[i]);
                 i++;
             }
-            printf("]: ");
+            printf("]: "); 
         }
     }
-    return valueChar;
+    return valueChar[0];
 }
 
 void inputCString(char *stringPointer, int charMin, int charMax)
@@ -141,7 +145,7 @@ void inputCString(char *stringPointer, int charMin, int charMax)
 
         if ((charMin == charMax) && (size != charMax))
         {
-            printf("ERROR: String length must be exactly %d chars: ", charMax);
+            printf("Invalid %d-digit number! Number: ", charMax);
         }
         else if ((charMin != charMax) && (charMax < size))
         {

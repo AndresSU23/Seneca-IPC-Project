@@ -1,5 +1,5 @@
 /*/////////////////////////////////////////////////////////////////////////
-                        Assignment 1 - Milestone 2
+                        Assignment 1 - Milestone 3
 Full Name  : David Andres Sanchez Umbarila
 Student ID#: 140273228
 Email      : dasanchez-umbarila@myseneca.ca
